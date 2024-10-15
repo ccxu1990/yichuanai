@@ -6,7 +6,7 @@ export async function insertUser(user: User) {
 
   const db = await getDb();
   const res = await db.query(
-    `INSERT INTO users 
+    `INSERT INTO users_yc 
       (email, nickname, avatar_url, created_at, uuid) 
       VALUES 
       ($1, $2, $3, $4, $5)
@@ -43,7 +43,7 @@ export async function findUserByEmail(
 
 export async function findUserByUuid(uuid: string): Promise<User | undefined> {
   const db = getDb();
-  const res = await db.query(`SELECT * FROM users WHERE uuid = $1 LIMIT 1`, [
+  const res = await db.query(`SELECT * FROM users_yc WHERE uuid = $1 LIMIT 1`, [
     uuid,
   ]);
   if (res.rowCount === 0) {
